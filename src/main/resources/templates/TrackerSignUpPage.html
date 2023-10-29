@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Tracker SignUp Page</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="icon" th:href="@{/images/trakerLogo.png}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+	<style>
+		body {
+			width: 100%;
+			height: 100vh;
+			/* overflow: hidden; */
+			margin: 0px;
+			padding: 0px;
+			background-image: linear-gradient(320deg, #2e319256, #1bffff7d);
+		}
+
+		#userLogo {
+			position: absolute;
+			right: 3vw;
+			top: 4vh;
+			font-size: 2.5vw;
+			cursor: pointer;
+		}
+
+		header {
+			border-bottom: solid 2px black;
+		}
+
+		#trackerLogo {
+			width: 4vw;
+			height: 10vh;
+			margin-left: 5vh;
+			margin-top: 2vh;
+		}
+
+		#title {
+			position: relative;
+			bottom: 3vh;
+			display: inline;
+			font-family: 'Pacifico', cursive;
+		}
+
+		#con-1 {
+			background-image: linear-gradient(120deg, #2E3192, #1BFFFF);
+			height: 86.5vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		#subCon-1 {
+			width: 40vw;
+			height: 80vh;
+			background-image: linear-gradient(320deg, #2e319256, #1bffff7d);
+			border-radius: 3vw;
+			box-shadow: 0px 0px 8px black;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		#stage1 {
+			display: flex;
+			justify-content: center;
+			column-gap: 10px;
+			/* background-color: yellow; */
+			width: 500px;
+		}
+
+		#facebook,
+		#google {
+			background-color: #3b5998;
+			color: aliceblue;
+			box-shadow: 0px 0px 1px black;
+			width: 13vw;
+			height: 8vh;
+			border-radius: 1vw;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		#google {
+			background-color: aliceblue;
+			color: black;
+			box-shadow: 0px 0px 1px black;
+		}
+
+		.userData {
+			width: 25vw;
+			height: 5vh;
+			background-image: linear-gradient(320deg, #2e319256, #1bffff7d);
+			border-radius: 1vw;
+			outline: none;
+			border: none;
+			box-shadow: 0px 0px 3px black;
+			font-size: 1.2vw;
+			padding-left: 1vw;
+		}
+
+		#sub {
+			width: 26.5vw;
+			height: 6vh;
+			border-radius: 1vw;
+			font-size: large;
+			outline: none;
+			border: none;
+			box-shadow: 0px 0px 3px black;
+			background-image: linear-gradient(320deg, #2E3192, #1BFFFF);
+			color: aliceblue;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<img th:src="@{/images/trakerLogo.png}" id="trackerLogo" alt="">
+		<h2 id="title">Spring Expenses Tracker</h2>
+		<a th:href="@{index}"><i class="fa-solid fa-user" id="userLogo" style="color: #000000;"></i></a>
+	</header>
+	
+	<div id="con-1">
+		
+		<div id="subCon-1">
+			<h4 style="font-family: 'Source Code Pro', monospace;">Create New Account</h4>
+			<div id="stage1">
+				<form th:action="@{/registration}" method="post">
+					<input class="userData" name="fullname" type="text" placeholder="Your Name" autofocus required><br><br>
+					<input class="userData" name="username" type="text" placeholder="Your Username"><br><br>
+					<input class="userData" name="email" type="text" placeholder="Your Email"><br><br>
+					<input class="userData" name="mobile" type="text" placeholder="Your Mobile"><br><br>
+					<input class="userData" name="password" type="text" placeholder="Your Password"><br><br>
+					<input class="userData" name="repassword" type="text" placeholder="Re-Enter Your Password"><br><br>
+					<input id="sub" type="submit" value="Sign Up">
+				</form>
+				
+			</div>
+			<h5>Have already an account..? <a th:href="@{logInPage}">LogIn</a> here</h5>
+		</div>
+		<h4 th:text="${msg}" style="color: red;"></h4>
+	</div>
+
+</body>
+
+</html>

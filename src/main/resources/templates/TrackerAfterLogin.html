@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Tracker profile Page</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="icon" th:href="@{/images/trakerLogo.png}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+	<style>
+		body {
+			width: 100%;
+			height: 100vh;
+			/* overflow: hidden; */
+			margin: 0px;
+			padding: 0px;
+			background-image: linear-gradient(320deg, #2e319256, #1bffff7d);
+
+
+		}
+
+		#userLogo {
+			position: absolute;
+			right: 3vw;
+			top: 7vh;
+			font-size: 3vw;
+			cursor: pointer;
+			transition: all;
+		}
+
+		#userLogo:hover {
+			transform: scale(1.2) rotateY(180deg);
+
+		}
+
+		header {
+			border-bottom: solid 2px black;
+		}
+
+		#trackerLogo {
+			width: 4vw;
+			height: 10vh;
+			margin-left: 5vh;
+			margin-top: 2vh;
+		}
+
+		#title {
+			position: relative;
+			bottom: 3vh;
+			display: inline;
+			font-family: 'Pacifico', cursive;
+		}
+
+		#con-1 {
+			background-image: linear-gradient(120deg, #2E3192, #1BFFFF);
+			height: 86.5vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+
+
+		}
+
+		#subCon-1 {
+			width: 40vw;
+			height: 70vh;
+			background-image: radial-gradient(#2e319256, #1bffff7d, #2e319256);
+			border-radius: 3vw;
+			box-shadow: 0px 0px 8px black;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			column-gap: 2vw;
+
+		}
+
+		.anchor {
+			text-decoration: none;
+			color: aliceblue;
+		}
+
+		#stage1,
+		#stage2,
+		#stage3,
+		#stage4 {
+			/* background-color: yellow; */
+			color: aliceblue;
+			width: 15vw;
+			height: 30vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			row-gap: 1vh;
+			font-size: 2vw;
+			text-shadow: 0px 0px 4px black;
+		}
+
+		#options {
+			list-style: none;
+			z-index: 1;
+			position: relative;
+			bottom: 97.5vh;
+			right: 6vw;
+			margin-left: 90vw;
+			display: none;
+			width: 10vw;
+			/* background-color: #1BFFFF; */
+		}
+
+		.subLi {
+			width: 10vw;
+			height: 4vh;
+			border-bottom: solid 2px black;
+			text-align: center;
+			font-weight: bold;
+			cursor: pointer;
+			color: whitesmoke;
+			text-shadow: 0px 0px 5px black;
+			transition: all 1s;
+		}
+
+		#userLogo:hover+#options {
+			display: block;
+
+		}
+
+		#options:hover {
+			display: block;
+
+		}
+
+		.subLi:hover {
+			transform: translate(-10px);
+		}
+	</style>
+</head>
+
+<body>
+
+	<header>
+		<img th:src="@{/images/trakerLogo.png}" id="trackerLogo" alt="">
+		<a th:href="@{afterLogIn}" style="color: #1BFFFF; text-shadow: 0px 0px 4px black;"><i
+				class="fa-solid fa-house" style="font-size: 3vw ;position: absolute;left: 49vw; top: 5vh;"></i></a>
+		<h2 id="title">Spring Expenses Tracker</h2>
+
+	</header>
+	<div id="con-1">
+		<div id="subCon-1">
+			<div id="stage1"><i class="fa-solid fa-hand-holding-medical"></i><a th:href="@{addExpenses}"
+					class="anchor">Add Expenses</a></div>
+			<div id="stage2"><i class="fa-regular fa-eye"></i><a th:href="@{/viewExpense/{id} (id=${session.user.userid})}" 
+			th:unless="${session == null}" class="anchor">View
+					Expenses</a></div>
+			<div id="stage3"><i class="fa-solid fa-sterling-sign"></i><a th:href="@{totalExpenses}"
+					class="anchor">Total Expenses</a></div>
+			<div id="stage4"><i class="fa-solid fa-filter-circle-dollar"></i><a th:href="@{filterExpense}" class="anchor">Filter
+					Expenses</a></div>
+		</div>
+		<h5>&copy; mYn, All Rights Registered</h5>
+
+	</div>
+	<h2 style="position: relative; bottom: 54vh; padding-left: 41vw; font-family: 'Pacifico', cursive;
+   font-family: 'Signika', sans-serif; text-shadow: 0px 0px 3px whitesmoke;">Welcome <span
+			th:text="${session.user.fullname}" th:unless="${session == null}"></span></h2>
+	<i class="fa-solid fa-user-gear fa-flip-horizontal" id="userLogo" style="color: #000000;"></i>
+	<ul id="options">
+		<a th:href="@{/expense/updateProfile}" style="text-decoration: none;"><li class="subLi">Update Profile</li></a>
+		<a href="" style="text-decoration: none;"><li class="subLi">About Us</li></a>
+		<a href="" style="text-decoration: none;"><li class="subLi">Contact Us</li></a>
+		<a th:href="@{/logout}" style="text-decoration: none;"><li class="subLi">LogOut</li></a>
+	</ul>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+   <title>Tracker Login Page</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" th:href="@{/images/trakerLogo.png}">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap" rel="stylesheet">
+   <style>
+      body{
+         width: 100%;
+         height: 100vh;
+         /* overflow: hidden; */
+         margin: 0px;
+         padding: 0px;
+         background-image: linear-gradient(320deg,#2e319256 , #1bffff7d);
+      }
+      #userLogo{
+         position: absolute;
+         right: 3vw;
+         top: 4vh;
+         font-size: 2.5vw;
+         cursor: pointer;
+      }
+      header{
+         border-bottom: solid 2px black;
+      }
+      #trackerLogo{
+         width: 4vw;
+         height: 10vh;
+         margin-left: 5vh;
+         margin-top: 2vh;
+      }
+      #title{
+         position: relative;
+         bottom: 3vh;
+         display: inline;
+         font-family: 'Pacifico', cursive;
+      }
+      #con-1{
+        background-image: linear-gradient(120deg,#2E3192 , #1BFFFF);
+        height: 86.5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #subCon-1{
+        width: 40vw;
+        height: 65vh;
+        background-image: linear-gradient(320deg,#2e319256 , #1bffff7d);
+        border-radius: 3vw;
+        box-shadow: 0px 0px 8px black;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+      #stage1,#stage2{
+        display: flex;
+        justify-content: center;
+        column-gap: 10px;
+        /* background-color: yellow; */
+        width: 500px;
+      }
+      #facebook, #google{
+        background-color:  #3b5998;
+        color: aliceblue;
+        box-shadow: 0px 0px 1px black;
+        width: 13vw;
+        height: 8vh;
+        border-radius: 1vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;        
+      }
+    
+      #google{
+        background-color: aliceblue;
+        color: black;
+        box-shadow: 0px 0px 1px black;
+      }
+      .userData{
+        width: 25vw;
+        height: 5vh;
+        background-image: linear-gradient(320deg,#2e319256 , #1bffff7d);
+        border-radius: 1vw;
+        outline: none;
+        border: none;
+        box-shadow: 0px 0px 3px black;
+        font-size: large;
+        padding-left: 1vw;
+      }
+      #sub{
+        width: 26.5vw;
+        height: 6vh;
+        border-radius: 1vw;
+        font-size: large;
+        background-color: #000000;
+        color: aliceblue;
+        cursor: pointer;
+      }
+   
+       
+   </style>
+</head>
+<body>
+	
+    <header>
+      <img th:src="@{/images/trakerLogo.png}" id="trackerLogo" alt="">
+      <h2 id="title" style="width: 40vw; height: 60vh;">Spring Expenses Tracker</h2>
+      <a th:href="@{index}"><i class="fa-solid fa-user" id="userLogo" style="color: #000000;"></i></a>
+   </header>
+   <div id="con-1">
+      <div id="subCon-1">
+		  
+        <h1 style="font-family: 'Source Code Pro', monospace;">Sign In With</h1>
+            <div id="stage1">
+               <div id="facebook"><i class="fa-brands fa-square-facebook"></i>&nbsp;&nbsp;<a href="https://www.facebook.com/" style="color: aliceblue;">Facebook</a></div>
+               <div id="google"><i class="fa-brands fa-google">&nbsp;&nbsp;</i><a href="https://accounts.google.com/v3/signin/identifier?ifkv=AYZoVhf7qReLMD87EaaB4yO64271Wwv1nHre1njhCU1uQkImP-1Fxwan9DYU1SCVMW77ACWuXNneEw&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-250640615%3A1696076020686385&theme=glif">Google</a></div>
+            </div><br>
+            <div id="stage2">
+               <form th:action="@{/login}" method="post">
+                <label for="">Username</label><br>
+                <input class="userData" type="text" autofocus title="Enter Your Name" name="username"><br><br>
+                <label for="">Password <span style="font-size: 1vw;"> <a href="">Forgot?</a></span></label><br>
+                <input class="userData" type="text" title="Enter Your Password" name="password">
+                <i class="fa-solid fa-eye" style="position: relative; right: 3vw;" id="logo"></i>
+                <br><br>
+                <input id="sub" type="submit" value="Log In">
+               </form>
+             </div>
+             <h5>not a member..! <a th:href="@{signUpPage}">Sign Up</a> now</h5>
+             <h3 th:text="${msg}" style="color: red;" ></h3>
+      </div>
+      
+   </div>
+   
+</body>
+</html>
